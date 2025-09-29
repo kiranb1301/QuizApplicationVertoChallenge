@@ -48,8 +48,8 @@ git clone https://github.com/kiranb1301/QuizApplicationVertoChallenge.git
 cd QuizApplicationVertoChallenge
 
 # Create virtual environment
-python -m venv venv
-source venv/bin/activate   # On Windows: venv\Scripts\activate
+python -m venv myenv
+source myenv/bin/activate   # On Windows: myenv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
@@ -121,3 +121,4 @@ This runs the Django test suite using an ephemeral SQLite test database.
 ## 📄 License
 
 This project is licensed under the MIT License. See `LICENSE` for details.
+
