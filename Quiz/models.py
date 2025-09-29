@@ -40,8 +40,6 @@ class Question(models.Model):
     class Meta:
         db_table = 'QUESTIONS'
 
-
-
 class Option(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='options')

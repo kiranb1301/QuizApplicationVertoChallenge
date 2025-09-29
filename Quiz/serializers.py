@@ -73,7 +73,6 @@ class PublicMCQQuestionSerializer(serializers.ModelSerializer):
         return [{"id": opt.id, "text": opt.text} for opt in obj.options.all()]
 
 
-
 class SubmissionAnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubmissionAnswer
@@ -81,9 +80,9 @@ class SubmissionAnswerSerializer(serializers.ModelSerializer):
 
 
 class SubmissionSerializer(serializers.ModelSerializer):
-    answers = SubmissionAnswerSerializer(many=True, required=False)
+    #answers = SubmissionAnswerSerializer(many=True, required=False)
 
     class Meta:
         model = Submission
-        fields = ['id', 'quiz', 'score', 'total', 'submitted_at', 'answers']
+        fields = ['id', 'quiz', 'score', 'total', 'submitted_at'] #'answers']
         read_only_fields = ['score', 'total', 'submitted_at']

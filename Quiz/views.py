@@ -22,12 +22,16 @@ class QuizListCreateAPIView(APIView):
         try:
             quizzes = Quiz.objects.all().order_by('-created_at')
             serializer = QuizSerializer(quizzes, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+
+            # Only return subset of fields
+            slim_data = [
+                {"id": q["id"], "title": q["title"]}
+                for q in serializer.data
+            ]
+            return Response(slim_data, status=status.HTTP_200_OK)
         except Exception as e:
-            return Response(
-                {"detail": str(e)},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
+            return Response({"detail": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
     @swagger_auto_schema(
         request_body=QuizSerializer,   # ✅ tells Swagger what to expect
         responses={201: QuizSerializer}
