@@ -3,6 +3,18 @@
 A backend API for creating and managing quizzes, adding questions, and submitting answers with scoring.  
 Built using **Python + Django REST Framework** for the Verto hiring challenge.
 
+[
+![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
+](https://www.python.org/) [
+![Django 5](https://img.shields.io/badge/Django-5.x-092E20?logo=django&logoColor=white)
+](https://www.djangoproject.com/) [
+![DRF](https://img.shields.io/badge/DRF-%20Django%20REST%20Framework-a30000)
+](https://www.django-rest-framework.org/) [
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow)
+](./LICENSE) [
+![API Docs](https://img.shields.io/badge/Docs-Swagger%20%2F%20ReDoc-3C9)
+](./swagger/)
+
 ---
 
 ## 🚀 Features
@@ -37,6 +49,49 @@ Built using **Python + Django REST Framework** for the Verto hiring challenge.
 - Django REST Framework
 - drf-yasg (Swagger/Redoc API docs)
 - SQLite (default, can switch to Postgres/MySQL)
+
+---
+
+## 📊 Visual Overview
+
+### Architecture Diagram
+
+```mermaid
+flowchart LR
+    Client[Client / Recruiter] -->|HTTP JSON| API[DRF Views]
+    API --> Serializers[Serializers]
+    Serializers --> Models[Models]
+    Models --> DB[(SQLite / Postgres)]
+    API -->|OpenAPI| Swagger[Swagger / ReDoc]
+    subgraph App
+      API
+      Serializers
+      Models
+    end
+```
+
+### Submission Scoring Flow
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant A as DRF API
+    participant V as QuizSubmitAPIView
+    participant D as Database
+
+    C->>A: POST /api/quizzes/{quiz_id}/submit {answers}
+    A->>V: Validate & route
+    V->>D: Fetch quiz, questions, options
+    V->>D: Create Submission(total)
+    loop For each answer
+        V->>D: Create SubmissionAnswer
+        V->>D: Set selected_options / save text
+        V->>V: Compare chosen vs correct (exact match)
+    end
+    V->>D: Update submission.score
+    V-->>A: 200 {score, total, submitted_at}
+    A-->>C: JSON response
+```
 
 ---
 
