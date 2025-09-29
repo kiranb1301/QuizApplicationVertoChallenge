@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+*.egg
+*.egg-info/
+*.pyd
+
+# Virtual environments
+env/
+venv/
+ENV/
+.venv/
+*.env
+
+# IDE / editor configs
+.vscode/
+.idea/
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Django specific
+*.log
+*.pot
+*.mo
+*.pyc
+*.pyo
+*.db
+db.sqlite3
+
+# Coverage / test
+.coverage
+coverage.xml
+*.cover
+htmlcov/
+
+# Misc
+*.stackdump
