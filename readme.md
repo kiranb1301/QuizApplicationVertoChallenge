@@ -217,35 +217,7 @@ curl -X GET "http://127.0.0.1:8000/api/quizzes/8f5a2b2c-d3d8-4a30-9a05-6c3b2c9a0
 }
 ```
 
-### 4) Update Quiz
-
-```bash
-curl -X PUT "http://127.0.0.1:8000/api/quizzes/8f5a2b2c-d3d8-4a30-9a05-6c3b2c9a0a11/" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "title": "Python Fundamentals Quiz"
-  }'
-```
-
-```json
-{
-  "id": "8f5a2b2c-d3d8-4a30-9a05-6c3b2c9a0a11",
-  "title": "Python Fundamentals Quiz",
-  "instructions": "Answer all questions. No negative marking.",
-  "created_at": "2025-09-29T10:20:30.123Z",
-  "total_marks": 0
-}
-```
-
-### 5) Delete Quiz
-
-```bash
-curl -X DELETE "http://127.0.0.1:8000/api/quizzes/8f5a2b2c-d3d8-4a30-9a05-6c3b2c9a0a11/" -i
-```
-
-Expected: `204 No Content`
-
-### 6) Add Question to Quiz — Single Choice
+### 4) Add Question to Quiz — Single Choice
 
 Request
 
@@ -401,29 +373,6 @@ curl -X GET "http://127.0.0.1:8000/api/questions/c7f67a5d-f2fd-4771-8c2b-9a3c9b3
   ]
 }
 ```
-
-### 12) Update Question (text/order)
-
-```bash
-curl -X PUT "http://127.0.0.1:8000/api/questions/c7f67a5d-f2fd-4771-8c2b-9a3c9b3d2a00/" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "text": "What is len(\"hello\")?",
-    "order": 10
-  }'
-```
-
-Expected: 200 with updated question. Note: changing type/options is not supported via this endpoint.
-
-### 13) Delete Question
-
-```bash
-curl -X DELETE "http://127.0.0.1:8000/api/questions/c7f67a5d-f2fd-4771-8c2b-9a3c9b3d2a00/" -i
-```
-
-Expected: `204 No Content`
-
----
 
 ## 🧠 Assumptions & Design Choices
 

@@ -101,32 +101,6 @@ class QuizDetailAPIView(APIView):
                 {"detail": str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
-
-    def put(self, request, pk):
-        try:
-            quiz = get_object_or_404(Quiz, pk=pk)
-            serializer = QuizSerializer(quiz, data=request.data, partial=True)
-            if serializer.is_valid():
-                quiz = serializer.save()
-                return Response(QuizSerializer(quiz).data, status=status.HTTP_200_OK)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        except Exception as e:
-            return Response(
-                {"detail": str(e)},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-
-    def delete(self, request, pk):
-        try:
-            quiz = get_object_or_404(Quiz, pk=pk)
-            quiz.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        except Exception as e:
-            return Response(
-                {"detail": str(e)},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-
 class QuizQuestionsAPIView(APIView):
     """Get all questions for a quiz (hide correct answers)."""
 
@@ -209,21 +183,3 @@ class QuestionDetailAPIView(APIView):
         except Exception as e:
             return Response({"detail": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    def put(self, request, pk):
-        try:
-            question = get_object_or_404(Question, pk=pk)
-            serializer = QuestionSerializer(question, data=request.data, partial=True)
-            if serializer.is_valid():
-                question = serializer.save()
-                return Response(QuestionSerializer(question).data, status=status.HTTP_200_OK)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        except Exception as e:
-            return Response({"detail": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-    def delete(self, request, pk):
-        try:
-            question = get_object_or_404(Question, pk=pk)
-            question.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        except Exception as e:
-            return Response({"detail": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
