@@ -2,18 +2,12 @@
 
 A backend API for creating and managing quizzes, adding questions, and submitting answers with scoring.  
 Built using **Python + Django REST Framework** for the Verto hiring challenge.
-
-[
-![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
-](https://www.python.org/) [
-![Django 5](https://img.shields.io/badge/Django-5.x-092E20?logo=django&logoColor=white)
-](https://www.djangoproject.com/) [
-![DRF](https://img.shields.io/badge/DRF-%20Django%20REST%20Framework-a30000)
-](https://www.django-rest-framework.org/) [
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow)
-](./LICENSE) [
-![API Docs](https://img.shields.io/badge/Docs-Swagger%20%2F%20ReDoc-3C9)
-](./swagger/)
+[![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)](https://www.python.org/) 
+[![Django 5](https://img.shields.io/badge/Django-5.x-092E20?logo=django&logoColor=white)](https://www.djangoproject.com/) 
+[![DRF](https://img.shields.io/badge/DRF-%20Django%20REST%20Framework-a30000)](https://www.django-rest-framework.org/) 
+[![MySQL](https://img.shields.io/badge/MySQL-8.x-4479A1?logo=mysql&logoColor=white)](https://www.mysql.com/) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](./LICENSE) 
+[![API Docs](https://img.shields.io/badge/Docs-Swagger%20%2F%20ReDoc-3C9)](./swagger/) 
 
 ---
 
@@ -48,7 +42,7 @@ Built using **Python + Django REST Framework** for the Verto hiring challenge.
 - Django 5.x
 - Django REST Framework
 - drf-yasg (Swagger/Redoc API docs)
-- SQLite (default, can switch to Postgres/MySQL)
+- MySQL (default in `settings.py`; SQLite optional for tests)
 
 ---
 
@@ -109,6 +103,12 @@ source myenv/bin/activate   # On Windows: myenv\Scripts\activate
 # Install dependencies
 pip install -r requirements.txt
 
+# Configure database password for MySQL (create .env)
+# Windows PowerShell:
+echo DB_PASSWORD=your_mysql_password > .env
+# macOS/Linux:
+# echo "DB_PASSWORD=your_mysql_password" > .env
+
 # Run migrations
 python manage.py migrate
 
@@ -130,12 +130,40 @@ python manage.py runserver
 - API base path: `http://127.0.0.1:8000/api/`
 - API docs: `http://127.0.0.1:8000/swagger/` and `http://127.0.0.1:8000/redoc/`
 
+### MySQL settings (local)
+
+- Ensure MySQL is running and create a database of your choice. Replace `your_database_name` with the name you want:
+
+  ```bash
+  mysql -u your_mysql_user -p -e "CREATE DATABASE IF NOT EXISTS your_database_name CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+
+  ```
+
+- Set your MySQL USERNAME and PASSWORD in `.env` (Both are needed needed):
+
+  ```bash
+  # Windows PowerShell
+  echo DB_USER=your_mysql_user >> .env
+  echo DB_PASSWORD=your_mysql_password > .env
+  # macOS/Linux
+  # echo "DB_USER=your_mysql_user" >> .env
+  # echo "DB_PASSWORD=your_mysql_password" > .env
+  ```
+
+- Default MySQL connection in `settings.py` uses:
+  - ENGINE: `django.db.backends.mysql`
+  - NAME: `quiz`
+  - USER: reading from `.env` via python-decouple (`DB_USER`)
+  - HOST: `127.0.0.1`
+  - PORT: `3306`
+  - PASSWORD is read from `.env` via python-decouple (`DB_PASSWORD`)
+
 ---
 
 ## ✅ Running Tests
 
 ```bash
-python manage.py test
+python manage.py test Quiz
 ```
 
 This runs the Django test suite using an ephemeral SQLite test database.
