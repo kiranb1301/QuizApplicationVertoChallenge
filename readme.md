@@ -2,7 +2,9 @@
 
 A backend API for creating and managing quizzes, adding questions, and submitting answers with scoring.  
 Built using **Python + Django REST Framework** for the Verto hiring challenge.
-[![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)](https://www.python.org/) 
+
+[
+![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)](https://www.python.org/) 
 [![Django 5](https://img.shields.io/badge/Django-5.x-092E20?logo=django&logoColor=white)](https://www.djangoproject.com/) 
 [![DRF](https://img.shields.io/badge/DRF-%20Django%20REST%20Framework-a30000)](https://www.django-rest-framework.org/) 
 [![MySQL](https://img.shields.io/badge/MySQL-8.x-4479A1?logo=mysql&logoColor=white)](https://www.mysql.com/) 
@@ -14,7 +16,7 @@ Built using **Python + Django REST Framework** for the Verto hiring challenge.
 ## 🚀 Features
 
 - **Quiz Management**
-  - Create, list, update, and delete quizzes
+  - Create and List quizzes
   - Add questions with multiple options (single choice, multiple choice, text)
   - Validation: text questions ≤ 300 chars, choice questions must have correct answers
 
@@ -422,4 +424,5 @@ curl -X GET "http://127.0.0.1:8000/api/questions/c7f67a5d-f2fd-4771-8c2b-9a3c9b3
 ## 📄 License
 
 This project is licensed under the MIT License. See `LICENSE` for details.
+
 
