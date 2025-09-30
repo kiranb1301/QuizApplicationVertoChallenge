@@ -38,16 +38,6 @@ Built using **Python + Django REST Framework** for the Verto hiring challenge.
 
 ---
 
-## 🛠️ Tech Stack
-
-- Python 3.11
-- Django 5.x
-- Django REST Framework
-- drf-yasg (Swagger/Redoc API docs)
-- MySQL (default in `settings.py`; SQLite optional for tests)
-
----
-
 ## 📊 Visual Overview
 
 ### Architecture Diagram
@@ -57,7 +47,7 @@ flowchart LR
     Client[Client / Recruiter] -->|HTTP JSON| API[DRF Views]
     API --> Serializers[Serializers]
     Serializers --> Models[Models]
-    Models --> DB[(SQLite / Postgres)]
+    Models --> DB[(SQLite / MySQL)]
     API -->|OpenAPI| Swagger[Swagger / ReDoc]
     subgraph App
       API
@@ -424,5 +414,6 @@ curl -X GET "http://127.0.0.1:8000/api/questions/c7f67a5d-f2fd-4771-8c2b-9a3c9b3
 ## 📄 License
 
 This project is licensed under the MIT License. See `LICENSE` for details.
+
 
 
